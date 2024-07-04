@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'main_app',
     'rest_framework',
     'ckeditor',
+    'corsheaders',
     
 ]
 
@@ -42,6 +43,33 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    
+]
+CORS_ALLOWED_ORIGINS = [
+    
+    "http://localhost:5173",
+    "http://127.0.0.1:9000",
+    
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'OPTIONS'
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
 
 ROOT_URLCONF = 'ecoEliteEmpire_backend.urls'
@@ -126,3 +154,6 @@ CKEDITOR_CONFIGS = {
         'width': 800,
     },
 }
+
+
+
