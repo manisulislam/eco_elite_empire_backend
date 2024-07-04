@@ -11,3 +11,13 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
+
+class ContactUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactUs
+        fields = '__all__'
+
+class BlogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = '__all__'

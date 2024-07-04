@@ -22,3 +22,21 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+class Blog(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    image = models.ImageField(upload_to='blogs/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
