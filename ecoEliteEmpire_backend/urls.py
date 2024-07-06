@@ -6,7 +6,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('main_app.urls') )
+    path('api/', include('main_app.urls') ),
+    path('api/v1/auth/',include('djoser.urls')),
+    path('api/v1/auth/',include('djoser.urls.jwt')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
