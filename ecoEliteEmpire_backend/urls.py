@@ -9,6 +9,7 @@ urlpatterns = [
     path('api/', include('main_app.urls') ),
     path('api/v1/auth/',include('djoser.urls')),
     path('api/v1/auth/',include('djoser.urls.jwt')),
+    path('api/sslcommerz/',include('payment_app.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

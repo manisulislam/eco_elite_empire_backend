@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     "rest_framework_simplejwt",
+    "payment_app",
     
 ]
 
@@ -220,3 +221,8 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "info@ecoEliteEmpire.com"
 DOMAIN = env("DOMAIN")
 SITE_NAME = "Eco Elite Empire"
+
+
+SSL_COMMERZ_STORE_ID = env("SSL_COMMERZ_STORE_ID")
+SSL_COMMERZ_STORE_PASSWORD = env("SSL_COMMERZ_STORE_PASSWORD")
+SSL_COMMERZ_SANDBOX = True  # Set to False for production
