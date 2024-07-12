@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import *
 from .serializers import *
+from rest_framework import generics, permissions
 
 # Create your views here.
 class ProductList(APIView):
@@ -97,3 +98,11 @@ class BlogDetail(APIView):
         blog = Blog.objects.get(pk=pk)
         blog.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class ReviewListCreate(generics.ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

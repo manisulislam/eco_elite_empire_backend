@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from users_app.models import User
 
 
 # Create your models here.
@@ -40,3 +41,13 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review for {self.product.name} by {self.user.first_name}"
