@@ -6,6 +6,10 @@ from rest_framework.response import Response
 import requests
 import uuid
 from .models import Payment
+from rest_framework.views import APIView
+from rest_framework import status
+from .models import *
+from .serializers import *
 
 @api_view(['POST'])
 def sslcommerz_init(request):
@@ -88,3 +92,16 @@ def sslcommerz_ipn(request):
 
     payment.save()
     return Response({'status': 'success'})
+
+class ShippingInfoList(APIView):
+    def get(self, request):
+        shippinginfos = ShippingInfo.objects.all()
+        serializer = ShippingInfoSerializer(shippinginfos, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = ShippingInfoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
