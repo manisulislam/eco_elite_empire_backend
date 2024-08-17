@@ -2,7 +2,8 @@
 from datetime import timedelta
 from pathlib import Path
 import environ
-
+import dj_database_url
+import os
 env=environ.Env(
     DEBUG=(bool, False)
 )
@@ -21,7 +22,7 @@ SECRET_KEY =env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -105,11 +106,17 @@ WSGI_APPLICATION = 'ecoEliteEmpire_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default":dj_database_url.parse(
+            os.environ.get("DATABASE_URL")
+        )
 }
 
 AUTH_USER_MODEL = 'users_app.User'
